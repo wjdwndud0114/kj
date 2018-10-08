@@ -9,15 +9,23 @@ export default {
     return [
       {
         path: '/',
-        component: 'src/containers/Home',
+        component: 'src/containers/Home.jsx',
+      },
+      {
+        path: '/work',
+        component: 'src/containers/Work.jsx',
       },
       {
         path: '/about',
-        component: 'src/containers/About',
+        component: 'src/containers/About.jsx',
+      },
+      {
+        path: '/contact',
+        component: 'src/containers/Contact.jsx'
       },
       {
         is404: true,
-        component: 'src/containers/404',
+        component: 'src/containers/404.jsx',
       },
     ]
   },

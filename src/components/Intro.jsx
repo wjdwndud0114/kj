@@ -50,23 +50,39 @@ const StyledIntro = styled.div`
 export default class Intro extends Component {
   constructor (props) {
     super(props);
+    this.dom = React.createRef();
     this.logo = React.createRef();
     this.dot = React.createRef();
   }
 
+  hide (done) {
+    (new TimelineMax())
+      .to(this.dom.current, 1, {
+        transformOrigin: "center",
+        left: "1000px",
+        opacity: 0,
+        ease: Power4.easeOut,
+      })
+      .add(() => done && done());
+  }
+
   componentDidMount () {
-    const tl = new TimelineMax();
-    // enter
-    tl.from(this.logo.current, 2, {
-      strokeDashoffset: 400,
-      ease: Power4.easeIn,
-    })
+    const loading = new TimelineMax();
+    loading.to(this.dot.current, 1, { scale: .5, ease: Elastic.easeIn, transformOrigin: "center" })
+      .to(this.dot.current, 1.5, { scale: 1, ease: Elastic.easeOut }).repeat(-1);
+
+    // enter animation
+    (new TimelineMax())
+      .from(this.logo.current, 2, {
+        strokeDashoffset: 400,
+        ease: Power4.easeIn,
+      })
       .from(this.logo.current, 3, {
         x: -150,
         opacity: 0,
         ease: Power3.easeOut,
       }, 0)
-      .from('.logo.path', 3, {
+      .from('.logo.path', 2.5, {
         fillOpacity: 0,
         ease: Power3.easeOut,
       }, '-=1')
@@ -74,21 +90,13 @@ export default class Intro extends Component {
         scale: 0,
         ease: Elastic.easeOut,
       }, '-=2')
-      .set(this.dot.current, {
-        scale: 0.7,
-      })
-    // repeat loading
-    tl.add(TweenMax.to(this.dot.current, 1.5, {
-      scale: 1,
-      ease: Elastic.easeOut,
-      yoyo: true,
-      repeat: -1,
-    }));
+      .add(()=>{this.props.end()}, "-=0.7")
+      .add(loading, "-=0.7");
   }
 
   render () {
     return (
-      <StyledIntro>
+      <StyledIntro ref={this.dom}>
         <div className="animation-container">
           <svg ref={this.logo} className="logo" viewBox="0 0 130 100">
             <path className="logo path" d="M0.7,1.2h10.9v48.6H12L47.2,1.2h12.3L11.6,67.5v31H0.7V1.2z M24.6,44.2l6.5-9.8l31.5,64.1H50.4L24.6,44.2z" />

@@ -11,13 +11,11 @@ export default class Content extends Component {
   render () {
     return (
       <StyledContent>
-        <nav>
-          <Link exact to="/">Home</Link>
-          <Link to="/about">About</Link>
-        </nav>
-        <div className="content">
-          <Routes />
-        </div>
+        <Link exact to="/">Home</Link>
+        <Link to="/work">Work</Link>
+        <Link to="/about">About</Link>
+        <Link to="/contact">Contact</Link>
+        <Routes />
       </StyledContent>
     )
   }
