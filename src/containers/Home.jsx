@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Prefetch } from 'react-static'
-import { TimelineMax } from 'gsap/all'
 import styled from 'styled-components'
+import TweenMax from 'gsap/umd/TweenMax'
 
 import { TransitContext } from '../context/TransitContext.jsx'
 
@@ -29,8 +29,16 @@ const StyledHome = styled.div`
     border: 1px solid white;
     padding: 1rem;
     margin-top: 3rem;
+    display: inline-block;
+    vertical-align: middle;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform;
   }
-  button: hover {
+  button:hover {
     cursor: pointer;
     transform: scale(1.1);
   }
@@ -61,7 +69,8 @@ export default class Home extends Component {
         opacity: 0,
         y: 40,
         ease: Back.easeOut,
-      }, "-=0.5");
+      }, "-=0.5")
+      .add(() => {this.about.current.style.transform = ""});
   }
 
   handleAboutClick (history) {

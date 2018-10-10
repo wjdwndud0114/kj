@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { TimelineMax } from 'gsap/all'
+import TweenMax from 'gsap/umd/TweenMax'
 import lottie from 'lottie-web'
 
 import transitData from '../data/transit_data.json';

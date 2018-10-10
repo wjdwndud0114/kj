@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { TimelineMax } from 'gsap/all'
+import TweenMax from 'gsap/umd/TweenMax'
 
 const StyledIntro = styled.div`
   position: absolute;

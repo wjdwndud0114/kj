@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Router } from 'react-static'
+import { Router, Prefetch } from 'react-static'
 import styled, { createGlobalStyle } from 'styled-components'
 import { hot } from 'react-hot-loader'
 
@@ -51,6 +51,7 @@ class App extends Component {
       <Router>
         <AppStyles>
           <GlobalStyle />
+          <Prefetch path={typeof window !== 'undefined' ? window.location.pathname : "/"} />
           <Transit
             transitData={this.state.transitData}
             globalCallBack={this.transitCallBack}
