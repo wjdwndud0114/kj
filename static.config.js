@@ -2,11 +2,8 @@ import React, { Component } from 'react'
 import { ServerStyleSheet } from 'styled-components'
 
 export default {
-  getSiteData: () => ({
-    title: 'React Static',
-  }),
-  getRoutes: async () => {
-    return [
+  siteRoot: 'https://wjdwndud0114.github.io/kj/',
+  getRoutes: async () => [
       {
         path: '/',
         component: 'src/containers/Home.jsx',
@@ -27,8 +24,7 @@ export default {
         is404: true,
         component: 'src/containers/404.jsx',
       },
-    ]
-  },
+    ],
   renderToHtml: (render, Comp, meta) => {
     const sheet = new ServerStyleSheet()
     const html = render(sheet.collectStyles(<Comp />))

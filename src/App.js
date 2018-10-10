@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { Router } from 'react-static'
 import styled, { createGlobalStyle } from 'styled-components'
 import { hot } from 'react-hot-loader'
-import { TimelineMax } from 'gsap/all'
 
 import Intro from './components/Intro'
 import Content from './components/Content'
+import Transit from './components/Transit'
+import { TransitContext } from './context/TransitContext.jsx'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -19,11 +20,13 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const AppStyles = styled.div`
+
 `
 
 class App extends Component {
   state = {
-    introDone: false
+    introDone: false,
+    transitData: {},
   }
 
   constructor (props) {
@@ -32,22 +35,31 @@ class App extends Component {
     this.content = React.createRef();
   }
 
-  introEndHandler () { // called when intro animation finishes
-    this.intro.current.hide(this.introHiddenHandler.bind(this));
+  introEndHandler = () => { // called when intro animation finishes
+    this.transition('/intro', window.location.pathname, () => this.setState({ introDone: true }));
   }
 
-  introHiddenHandler () { // called when intro outro is done
-    this.setState({ introDone: true });
+  transition = (from, to, callback) => { // call to trigger transition
+    this.setState({ transitData: { from, to, callback } });
+  }
+  transitCallBack = () => {
+
   }
 
   render () {
     return (
       <Router>
         <AppStyles>
-          {this.state.introDone ? null : <Intro end={this.introEndHandler.bind(this)} ref={this.intro} />}
-          <Content ref={this.content} />
+          <GlobalStyle />
+          <Transit
+            transitData={this.state.transitData}
+            globalCallBack={this.transitCallBack}
+          />
+          {this.state.introDone ? null : <Intro end={this.introEndHandler} ref={this.intro} />}
+          <TransitContext.Provider value={{ transitFunc: this.transition }}>
+            <Content introDone={this.state.introDone} ref={this.content} />
+          </TransitContext.Provider>
         </AppStyles>
-        <GlobalStyle />
       </Router>
     )
   }

@@ -8,10 +8,11 @@ const StyledIntro = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background: #0068A0;
+  background: #22C9AD;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 
   .animation-container {
     width: auto;
@@ -50,20 +51,8 @@ const StyledIntro = styled.div`
 export default class Intro extends Component {
   constructor (props) {
     super(props);
-    this.dom = React.createRef();
     this.logo = React.createRef();
     this.dot = React.createRef();
-  }
-
-  hide (done) {
-    (new TimelineMax())
-      .to(this.dom.current, 1, {
-        transformOrigin: "center",
-        left: "1000px",
-        opacity: 0,
-        ease: Power4.easeOut,
-      })
-      .add(() => done && done());
   }
 
   componentDidMount () {
@@ -96,7 +85,7 @@ export default class Intro extends Component {
 
   render () {
     return (
-      <StyledIntro ref={this.dom}>
+      <StyledIntro>
         <div className="animation-container">
           <svg ref={this.logo} className="logo" viewBox="0 0 130 100">
             <path className="logo path" d="M0.7,1.2h10.9v48.6H12L47.2,1.2h12.3L11.6,67.5v31H0.7V1.2z M24.6,44.2l6.5-9.8l31.5,64.1H50.4L24.6,44.2z" />
