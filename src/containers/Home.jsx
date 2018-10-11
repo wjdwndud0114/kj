@@ -12,6 +12,7 @@ const StyledHome = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 1rem;
 
   h1, p {
     color: #fff;

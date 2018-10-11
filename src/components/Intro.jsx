@@ -24,6 +24,8 @@ const StyledIntro = styled.div`
     width: 6rem;
     stroke-dasharray: 400;
     stroke-dashoffset: 0;
+    opacity: 0;
+    transform: translateX(-150px);
 
     .logo.path {
       fill: #ffffff;
@@ -66,9 +68,9 @@ export default class Intro extends Component {
         strokeDashoffset: 400,
         ease: Power4.easeIn,
       })
-      .from(this.logo.current, 3, {
-        x: -150,
-        opacity: 0,
+      .to(this.logo.current, 3, {
+        x: 0,
+        opacity: 1,
         ease: Power3.easeOut,
       }, 0)
       .from('.logo.path', 2.5, {

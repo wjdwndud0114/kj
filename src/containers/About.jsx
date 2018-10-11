@@ -13,6 +13,7 @@ const StyledAbout = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 1rem;
 
   h1, p, button {
     color: #1f2d3d;
@@ -30,10 +31,6 @@ const StyledAbout = styled.div`
     padding: 1rem;
     margin-top: 3rem;
   }
-  button: hover {
-    cursor: pointer;
-    transform: scale(1.1);
-  }
   .container {
     display: flex;
     flex-direction: row;
@@ -43,7 +40,7 @@ const StyledAbout = styled.div`
   a {
     width: 4rem;
     height: 4rem;
-    margin-left: 1.6rem;
+    margin-left: 1.2rem;
   }
   a, button {
     display: inline-block;
