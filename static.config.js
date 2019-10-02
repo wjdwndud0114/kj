@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { ServerStyleSheet } from 'styled-components'
 
 export default {
-  siteRoot: 'https://wjdwndud0114.github.io/kj/',
+  siteRoot: 'https://kevinj.dev/',
   getRoutes: async () => [
       {
         path: '/',
