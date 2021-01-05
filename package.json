@@ -10,7 +10,7 @@
     "serve": "serve dist -p 3000"
   },
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.21.1",
     "gsap": "^2.0.2",
     "lottie-web": "^5.3.4",
     "react": "^16.0.0",
